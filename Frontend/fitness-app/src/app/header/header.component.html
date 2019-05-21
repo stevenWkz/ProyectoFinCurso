@@ -1,0 +1,73 @@
+<!--navBar de usuario-->
+<nav *ngIf="authService.isAuthenticated() && !authService.isAdmin()"
+  class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  <img src="../../assets/images/pesa.png" width="50" height="50" alt="logo pesa">
+
+  <!-- Links -->
+
+  <ul class="navbar-nav pl-5">
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link"  [routerLink]="['perfil', 2]" >Perfil</a>
+    </li>
+
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/objetivo">Objetivo</a>
+    </li>
+
+  
+    <li *ngIf="authService.isAuthenticated()" class="dropdown">
+      <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{authService.usuario.username}}
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesión</button>
+      </div>
+    </li>
+
+  </ul>
+
+</nav>
+
+
+
+
+<!--navBar admin-->
+
+<nav *ngIf="authService.isAuthenticated() && authService.isAdmin()" class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- Brand/logo -->
+  
+  <img src="../../assets/images/pesa.png" width="50" height="50" alt="logo pesa">
+
+
+  <!-- Links -->
+
+  <ul class="navbar-nav pl-5">
+  
+  
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/showUsers">Usuarios</a>
+    </li>
+
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/showAlimentos">Alimentos</a>
+    </li>
+
+
+
+    <li *ngIf="authService.isAuthenticated()" class="dropdown">
+      <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        {{authService.usuario.username}}
+      </a>
+
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <button (click)="logout()" class="dropdown-item" type="submit">Cerrar Sesión</button>
+      </div>
+    </li>
+
+  </ul>
+
+</nav>

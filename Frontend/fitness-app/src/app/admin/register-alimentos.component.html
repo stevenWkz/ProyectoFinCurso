@@ -1,0 +1,147 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+    {{ err }}
+  </li>
+</ul>
+
+<div class="row">
+
+
+
+<div class="col-sm-3">
+
+</div>
+
+
+<div class="card bg-dark text-white col-sm-6 mt-5">
+
+  <div class="card-header">
+    <h4 class="text-center">Registro Alimento</h4>
+  </div>
+
+  <div class="card-body">
+
+    <form #alimentoForm="ngForm">
+
+      <div class="form-group row">
+
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="alimento.nombre" name="nombre" #nombre="ngModel"
+            placeholder="Nombre" required>
+          <!--required minlength="4"-->
+
+          <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <div *ngIf="nombre.errors.required">
+              Nombre es requerido
+            </div>
+            <div *ngIf="nombre.errors.minlength">
+              Nombre debe tener al menos 4 caracteres
+            </div>
+          </div>
+        </div>
+
+
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="alimento.proteinas" name="proteinas" #proteinas="ngModel"
+            placeholder="Proteina" required>
+          <!--required-->
+
+          <div class="alert alert-danger" *ngIf="proteinas.invalid && (proteinas.dirty || proteinas.touched)">
+            <div *ngIf="proteinas.errors.required">
+              Proteina es requerido
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="form-group row">
+
+
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="alimento.carbohidratos" name="carbohidratos"
+            #carbohidratos="ngModel" placeholder="Carbohidratos" required>
+          <!-- required email-->
+
+          <div class="alert alert-danger"
+            *ngIf="carbohidratos.invalid && (carbohidratos.dirty || carbohidratos.touched)">
+            <div *ngIf="carbohidratos.errors.required">
+              Carbohidratos es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+
+
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="alimento.grasas" name="grasas" #grasas="ngModel"
+            placeholder="Grasas" required>
+          <!--required-->
+
+          <div class="alert alert-danger" *ngIf="grasas.invalid && (grasas.dirty || grasas.touched)">
+            <div *ngIf="grasas.errors.required">
+              Grasas es requerido
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="alimento.peso" name="peso" #peso="ngModel"
+            placeholder="Peso" required>
+          <!--required-->
+
+          <div class="alert alert-danger" *ngIf="peso.invalid && (peso.dirty || peso.touched)">
+            <div *ngIf="peso.errors.required">
+              Peso es requerida
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+
+      <div class="form-group row">
+
+
+        <div class="col-sm-12">
+          <input type="text" class="form-control" [(ngModel)]="alimento.valorEnergetico" required name="valorEnergetico"
+            #valorEnergetico="ngModel" placeholder="Valor energetico" >
+          <!--required-->
+
+          <div class="alert alert-danger"
+            *ngIf="valorEnergetico.invalid && (valorEnergetico.dirty || valorEnergetico.touched)">
+            <div *ngIf="valorEnergetico.errors.required">
+              Valor energetico es requerida
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <button class="btn  btn-primary" role="button" (click)='createAlimento()'>Crear</button>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<div class="col-sm-3">
+
+</div>
+
+</div>
