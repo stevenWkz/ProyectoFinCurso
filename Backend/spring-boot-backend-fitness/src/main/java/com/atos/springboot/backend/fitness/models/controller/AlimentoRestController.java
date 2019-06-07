@@ -39,7 +39,7 @@ public class AlimentoRestController {
 	private InterfaceAlimentoService alimentoService;
 
 	// Mostramos todos los alimentos
-	@Secured("ROLE_ADMIN")
+	
 	@GetMapping("/allAlimentos")
 	public List<Alimento> showAllAlimentos() {
 
@@ -47,15 +47,34 @@ public class AlimentoRestController {
 
 	}
 
-	// Servicio para devolver los Alimentos del usuario
-	@GetMapping("/alimentosUsuario/{id_usuario}")
-	public List<Alimento> getAlimentosUser(@PathVariable Long id_usuario) {
+	
+	 //Servicio para devolver los Alimentos del usuario
+	@GetMapping("/alimentosUsuario/{id}")
+	public List<Alimento> getAlimentosUser(@PathVariable Long id) {
 
-		return alimentoService.getAlimentoUsuarios(id_usuario);
+		return alimentoService.getAlimentoUsuarios(id);
 
 	}
+	
 
-	@Secured("ROLE_ADMIN")
+	@PostMapping("/insertarAlimentos/{id_usuario}/{id_alimento}")
+	public void insertarAlimentosUser(@Valid @PathVariable Long id_usuario, @PathVariable Long id_alimento ) {
+		
+		 alimentoService.insertarAlimentoUser(id_usuario, id_alimento);
+	}
+	
+	
+	//Servicio que devuelve la suma de los alimentos por cada usuario
+	@GetMapping("/alimentosSUM/{id}")
+	public int sumaAlimentos(@PathVariable Long id) {
+		
+		return alimentoService.sumaAlimentos(id);
+	}
+	
+	
+	
+	
+	
 	@GetMapping("/alimento/{id}")
 	public ResponseEntity<?> show(@PathVariable Long id) {
 
@@ -79,7 +98,7 @@ public class AlimentoRestController {
 	}
 
 	// Creamos un usuario nuevo
-	@Secured("ROLE_ADMIN")
+
 	@PostMapping("/registerAlimento")
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<?> create(@Valid @RequestBody Alimento alimento, BindingResult result) {
@@ -120,7 +139,7 @@ public class AlimentoRestController {
 	}
 
 	// Actualizamos el usuario
-	@Secured("ROLE_ADMIN")
+
 	@PutMapping("/alimento/{id}")
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public ResponseEntity<?> update(@Valid @RequestBody Alimento alimento, BindingResult result,
@@ -174,7 +193,7 @@ public class AlimentoRestController {
 
 	}
 
-	// Eliminamos al usuario con la id
+	// Eliminamos al alimento con la id
 	@Secured("ROLE_ADMIN")
 	@DeleteMapping("/alimento/{id}")
 	@ResponseStatus(code = HttpStatus.NO_CONTENT)

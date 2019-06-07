@@ -2,7 +2,7 @@ package com.atos.springboot.backend.fitness.models.entity;
 
 import java.io.Serializable;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,10 +35,10 @@ public class Objetivo implements Serializable {
 	private String sexo;
 	
 	
-	private int nivelActividad;
+	private double nivel;
 	
-	@OneToOne
-	@JoinColumn(name = "usuario_id", referencedColumnName = "id")
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario", referencedColumnName = "id")
 	private Usuario usuario;
 	
 
@@ -83,12 +83,12 @@ public class Objetivo implements Serializable {
 	}
 	
 	
-	public int getNivelActividad() {
-		return nivelActividad;
+	public double getNivel() {
+		return nivel;
 	}
 
-	public void setNivelActividad(int nivelActividad) {
-		this.nivelActividad = nivelActividad;
+	public void setNivel(double nivel) {
+		this.nivel = nivel;
 	}
 
 	public Usuario getUsuario() {

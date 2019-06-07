@@ -2,7 +2,6 @@ package com.atos.springboot.backend.fitness.models.services;
 
 import java.util.List;
 
-import org.springframework.data.repository.query.Param;
 
 import com.atos.springboot.backend.fitness.models.entity.Alimento;
 
@@ -22,8 +21,14 @@ public interface InterfaceAlimentoService {
 	//Eliminaremos al alimento
 	public void delete(Long id);
 	
+	//Muestra los alimentos de los usuarios que han ingerido
+	public List<Alimento> getAlimentoUsuarios(Long id);
 	
-	public List<Alimento> getAlimentoUsuarios(@Param("id_usuario") Long id_usuario);
+	//Suma el total de calorias de todos los alimentos
+	public int sumaAlimentos(Long id);
+		
+	//Agrega el alimento que el usuario inserta en su perfil
+	public void insertarAlimentoUser(Long id_usuario, Long id_alimento);
 	
 	
 

@@ -21,9 +21,12 @@ public class ResourceServeConfig extends ResourceServerConfigurerAdapter {
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
+		
 
 		http.authorizeRequests()
-		.antMatchers("/users/register").permitAll()	
+		.antMatchers("/users/register").permitAll()
+		.antMatchers("/alimentos/insertarAlimentos/{id_usuario}/{id_alimento}").permitAll()
+		.antMatchers("/objetivos/insertarId/{altura}/{edad}/{nivel}/{peso}/{sexo}/{usuario}").permitAll()
 		.antMatchers("/objetivos/registerObjetivo").permitAll()
 		.anyRequest().authenticated()
 		.antMatchers("/users/usuarios").hasRole("ROL_ADMIN")

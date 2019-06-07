@@ -3,8 +3,6 @@ package com.atos.springboot.backend.fitness.models.services;
 import java.util.List;
 
 
-
-import com.atos.springboot.backend.fitness.models.entity.Alimento;
 import com.atos.springboot.backend.fitness.models.entity.Usuario;
 
 public interface InterfaceUsuarioService {
@@ -26,4 +24,5 @@ public interface InterfaceUsuarioService {
 
 
 
+	
 }

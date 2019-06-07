@@ -1,10 +1,15 @@
 package com.atos.springboot.backend.fitness.models.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
+import java.util.HashSet;
+
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,10 +41,20 @@ public class Alimento implements Serializable {
 
 	private double peso;
 
-	private double valorEnergetico;
+	private int valorEnergetico;
+	
+	
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            },
+            mappedBy = "alimentos")
+    private Set<Usuario> usuarios = new HashSet<>();
 
 	
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -87,13 +102,27 @@ public class Alimento implements Serializable {
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
-
-	public double getValorEnergetico() {
+	
+	
+	
+	public int getValorEnergetico() {
 		return valorEnergetico;
 	}
 
-	public void setValorEnergetico(double valorEnergetico) {
+	public void setValorEnergetico(int valorEnergetico) {
 		this.valorEnergetico = valorEnergetico;
 	}
+
+	public Set<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(Set<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+	
+	
+	
+	
 
 }

@@ -18,7 +18,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.atos.springboot.backend.fitness.models.dao.InterfaceUsuarioDAO;
-import com.atos.springboot.backend.fitness.models.entity.Alimento;
 import com.atos.springboot.backend.fitness.models.entity.Usuario;
 
 @Service

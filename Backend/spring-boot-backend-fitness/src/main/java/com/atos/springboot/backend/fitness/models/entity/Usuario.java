@@ -1,8 +1,9 @@
 package com.atos.springboot.backend.fitness.models.entity;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.List;
-
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,59 +22,62 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-
 @Entity
-@Table(name="usuarios")
+@Table(name = "usuarios")
 public class Usuario implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotEmpty(message = "No puede estar vacio")
 	@Size(min = 4, max = 12, message = "El tamaño debeestar entre 4 y 12")
 	@Column(nullable = false)
 	private String nombre;
-	
+
 	@NotEmpty(message = "No puede estar vacio")
 	private String apellido;
-	
+
 	@NotEmpty(message = "No puede estar vacio")
 	@Email(message = "No es una dirección de correo bien formada")
-	@Column(nullable=false, unique=false )
+	@Column(nullable = false, unique = false)
 	private String email;
-	
+
 	@NotEmpty(message = "No puede estar vacio")
-	@Column(nullable=true)
+	@Column(nullable = true)
 	private String direccion;
-	
+
 	@Column(unique = true, length = 20)
 	private String username;
-	
+
 	@Column(length = 60)
 	private String password;
-	
-	
+
 	private boolean enable;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@Column(nullable=true)
+	@Column(nullable = true)
 	private List<Role> roles;
-	
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Alimento> alimentos;
-	
+
+	@ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE
+            })
+    @JoinTable(name = "usuarios_alimentos",
+            joinColumns = { @JoinColumn(name = "usuarios_id") },
+            inverseJoinColumns = { @JoinColumn(name = "alimentos_id") })
+    private Set<Alimento> alimentos = new HashSet<>();
 
 	@OneToOne(mappedBy = "usuario")
 	private Objetivo objetivo;
-
-
+	
+	
+	
 	
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -133,7 +137,7 @@ public class Usuario implements Serializable {
 	public boolean getEnable() {
 		return enable;
 	}
-
+	
 	public void setEnable(boolean enable) {
 		this.enable = enable;
 	}
@@ -146,31 +150,11 @@ public class Usuario implements Serializable {
 		this.roles = roles;
 	}
 
-	public List<Alimento> getAlimentos() {
-		return alimentos;
-	}
-
-	public void setAlimentos(List<Alimento> alimentos) {
-		this.alimentos = alimentos;
-	}
-
 
 	
 	
 	
 
 
-	
-	
-	
-
-
-
-	
-	
-	
-
-	
-	
 
 }

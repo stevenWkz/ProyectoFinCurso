@@ -42,9 +42,21 @@ public class AlimentoService implements InterfaceAlimentoService {
 	}
 
 	@Override
-	public List<Alimento> getAlimentoUsuarios(Long id_usuario) {
-		// TODO Auto-generated method stub
-		return alimentoDAO.getAlimentoUsuarios(id_usuario);
+	public List<Alimento> getAlimentoUsuarios(Long id) {
+		return alimentoDAO.getAlimentoUsuarios(id);
+	}
+
+	@Override
+	public int sumaAlimentos(Long id) {
+
+		return alimentoDAO.sumaAlimentos(id);
+	}
+
+	@Override
+	public void insertarAlimentoUser(Long id_usuario, Long id_alimento) {
+		
+		 alimentoDAO.insertarAlimentoUser(id_usuario, id_alimento);
+		 
 	}
 
 }

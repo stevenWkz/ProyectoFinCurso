@@ -52,8 +52,7 @@ public class UsuarioRestController {
 		return usuarioService.findAll();
 
 	}
-	
-	
+		
 	
 
 	@GetMapping("/datosUsuario/{username}")
