@@ -152,7 +152,7 @@ export class AlimentoService {
 
 
 
-  //Servicio eliminar un usuario
+  //Servicio eliminar un alimento
   public delete(id: number): Observable<Alimento> {
 
     return this.http.delete<Alimento>(`${this.urlEndPoint}/alimento/${id}`, { headers: this.agregarAuthorizationHeader() }).pipe(

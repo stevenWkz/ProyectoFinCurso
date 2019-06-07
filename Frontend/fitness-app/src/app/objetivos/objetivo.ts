@@ -4,7 +4,7 @@ export class Objetivo{
     id: number;
     altura: number;
     edad: number;
-    nivelActividad: number;
+    nivel: number;
     peso: number;
     sexo: string;
     usuario: Usuario;

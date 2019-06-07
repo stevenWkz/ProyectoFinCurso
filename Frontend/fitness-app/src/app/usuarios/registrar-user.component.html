@@ -16,10 +16,10 @@
 
 
 
-  <div class="card bg-dark text-white col-sm-6 mt-5">
+  <div class="card micolor text-white col-md-6 mt-5">
 
     <div class="card-header">
-        <h4 class="text-center">Crear Cuenta</h4>
+      <h4 class="text-center">Crear Cuenta</h4>
     </div>
 
     <div class="card-body">
@@ -58,12 +58,6 @@
           </div>
 
         </div>
-
-
-
-
-
-
 
 
 
@@ -142,10 +136,31 @@
 
         <div class="form-group">
 
-          <!--<button class="btn  btn-primary" role="button" (click)='create()'>Crear</button>-->
 
-          <button class="btn  btn-primary" role="button" (click)='create()' *ngIf="!usuario.id else elseBlock"
-            [disabled]="!usuarioForm.form.valid">Crear</button>
+          <div class="row">
+
+
+
+            <div class="col-md-2">
+
+            </div>
+
+            <button class="btn  btn-success col-md-3" role="button" (click)='create()'
+              *ngIf="!usuario.id else elseBlock" [disabled]="!usuarioForm.form.valid">Registrar Cuenta</button>
+
+            <div class="col-md-2">
+
+            </div>
+
+            <button class="btn  btn-danger col-md-3" routerLink="/login" role="button" (click)='create()'
+              *ngIf="!usuario.id else elseBlock" [disabled]="!usuarioForm.form.valid">Cancelar</button>
+
+            <div class="col-md-2">
+
+            </div>
+
+          </div>
+
 
           <ng-template #elseBlock>
 
@@ -153,6 +168,8 @@
               [disabled]="!usuarioForm.form.valid">Editar</button>
 
           </ng-template>
+
+
 
         </div>
 

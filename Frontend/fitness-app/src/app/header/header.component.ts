@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../usuarios/auth.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { ObjetivoService } from '../objetivos/objetivo.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private objetivoService: ObjetivoService) { }
 
   ngOnInit() {
   }

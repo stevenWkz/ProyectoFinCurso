@@ -24,6 +24,7 @@ import { ShowAlimentosComponent } from './admin/show-alimentos.component';
 import { RegisterAlimentosComponent } from './admin/register-alimentos.component';
 import { UpdateUsersComponent } from './admin/update-users.component';
 import { UpdateAlimentosComponent } from './admin/update-alimentos.component';
+import { UpdateObjetivoComponent } from './objetivos/update-objetivo/update-objetivo.component';
 
 
 
@@ -36,6 +37,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'perfil/:id', component: PerfilComponent},
   {path: 'objetivo', component: ObjetivosComponent},
+  {path: 'objetivo/updateObjetivo/:id', component: UpdateObjetivoComponent},
   {path: 'register', component: RegistrarUserComponent},
   {path: 'showUsers', component: ShowUsersComponent},
   {path: 'showUsers/update/:id', component: UpdateUsersComponent},
@@ -63,6 +65,7 @@ const routes: Routes = [
     RegisterAlimentosComponent,
     UpdateUsersComponent,
     UpdateAlimentosComponent,
+    UpdateObjetivoComponent,
   
   ],
   imports: [

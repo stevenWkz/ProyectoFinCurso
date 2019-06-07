@@ -1,50 +1,110 @@
 <div class="container">
 
 
-  <div class="card mt-5">
-    <div class="card-header">
+  <div class="card mt-5  grand">
+    <div class="card-header border-white">
 
-      <h4 class="card title text-center">{{usuario.nombre}}</h4>
+      <h2 class="card title text-center text-white bg-transparent border-0">{{usuario.nombre}} {{usuario.apellido}}</h2>
 
-      <div class="row mt-3">
 
-        <div class="col-sm-1">
+      <div class="row">
 
-        </div>
-
-        <div class="card bg-info text-white text-center col-sm-4">
-          <div class="card-body">Peso ideal: 74 kg</div>
-        </div>
-
-        <div class="col-sm-2">
+        <div class="col-md-1">
 
         </div>
 
-      
-        <div class="card bg-info text-white text-center col-sm-4">
-          <div class="card-body">Calorias diarias: 2080 calorías</div>
+        <div class="card col-md-10  border-0 bg-transparent">
+
+          <div class=" border-white pb-3  bg-transparent ">
+
+            <div class="row">
+
+              <div class="col-md-1"></div>
+
+              <img src="../../assets/images/img_avatar1.png.png" class="mt-3" width="200" height="200"
+                alt="imagen usuario">
+
+              <div class="col-md-1"></div>
+
+              <ul class="list-group mt-3 col-md-6 text-center text-black">
+
+                <li class="list-group-item perfilCard">
+                  <h6>Edad: <span class="badge badge-info ml-2">{{objetivo.edad}} años</span></h6>
+                  <div *ngIf="objetivo == null" class="alert alert-info">
+                    No tiene registrada su Edad!
+                  </div>
+                </li>
+
+                <li class="list-group-item perfilCard">
+                  <h6>Sexo: <span class="badge badge-info ml-2">{{objetivo.sexo}}</span></h6>
+                  <div *ngIf="objetivo == null" class="alert alert-info">
+                      No tiene registrado su Sexo!
+                  </div>
+                </li>
+
+                <li class="list-group-item perfilCard">
+                  <h6>Altura: <span class="badge badge-info ml-2">{{objetivo.altura}} cm</span></h6>
+                  <div *ngIf="objetivo == null" class="alert alert-info">
+                      No tiene registrada su Altura!
+                  </div>
+                </li>
+
+                <li class="list-group-item perfilCard">
+                  <h6>Peso: <span class="badge badge-info ml-2">{{objetivo.peso}} kg</span></h6>
+                  <div *ngIf="objetivo == null" class="alert alert-info">
+                      No tiene registrado su Peso!
+                  </div>
+                </li>
+
+
+              </ul>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <div class="col-sm-1">
+        <div class="col-md-1">
 
         </div>
-
-
-
 
       </div>
 
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large
-        modal</button> 
+      <div class="row mt-3">
+        <div class="col-md-1"></div>
 
-      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
-        aria-hidden="true">
+
+        <div class="card micolor border-white text-white text-center col-sm-12 col-md-4 mr-3">
+          <div class="card-body">Peso ideal: {{pesoideal}} kg</div>
+          <div *ngIf="objetivo == null" class="alert alert-info">
+            Registré su Objetivo!
+          </div>
+        </div>
+
+        <button type="button" class="btn agregarBg border-white text-white col-sm-12 col-md-2 mr-3" data-toggle="modal"
+          data-target=".bd-example-modal-lg">Agregar
+          Alimento</button>
+
+        <div class="card micolor border-white text-white text-center col-sm-12 col-md-4">
+          <div class="card-body">Calorias diarias: {{caloriasDiarias}} calorías</div>
+          <div *ngIf="objetivo == null" class="alert alert-info">
+              Registré su Objetivo!
+          </div>
+        </div>
+
+        <div class="col-md-1"></div>
+      </div>
+
+      <div class="modal fade bd-example-modal-lg col-sm-12" tabindex="-1" role="dialog"
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
           <div class="modal-content">
 
-            <table class="table table-hover">
+            <table class="table table-hover table-responsive col-sm-12 col-md-12 text-center ">
               <thead class="thead-dark">
                 <tr>
+                  <th>Id</th>
                   <th>Alimento</th>
                   <th>Proteina</th>
                   <th>Hidratos de Carbono</th>
@@ -52,10 +112,12 @@
                   <th>Peso</th>
                   <th>Valor Energético</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let alimento of alimentos">
+                  <td>{{alimento.id}}</td>
                   <td>{{alimento.nombre}}</td>
                   <td>{{alimento.proteinas}}</td>
                   <td>{{alimento.carbohidratos}}</td>
@@ -63,7 +125,8 @@
                   <td>{{alimento.peso}}</td>
                   <td>{{alimento.valorEnergetico}}</td>
                   <td>
-                    <button type="button" name="editar" class="btn btn-primary">Agregar</button>
+                    <button type="button" name="insertarAlimentosUser" class="btn btn-primary"
+                      (click)='insertarAlimentosUser(usuario.id, alimento.id)' data-dismiss="modal">Agregar</button>
                   </td>
                 </tr>
               </tbody>
@@ -73,50 +136,71 @@
         </div>
       </div>
 
-      <!--<select class="selectpicker" data-live-search="true">
-                    <option *ngFor="let alimento of alimentos" [ngValue]="alimento" data-tokens="ketchup mustard">{{alimento.nombre}}</option>
-                  </select>-->
-
-
     </div>
 
 
-    <div class="card-body">
-
-      <table class="table table-hover">
-        <thead class="thead-dark">
-          <tr>
-            <th>Alimento</th>
-            <th>Proteina</th>
-            <th>Hidratos de Carbono</th>
-            <th>Grasas</th>
-            <th>Peso</th>
-            <th>Valor Energético</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let alimentoe of alimentos2">
-            <td>{{usuario.alimentoe.nombre}}</td>
-            <td>{{usuario.alimentoe.proteinas}}</td>
-            <td>{{usuario.alimentoe.carbohidratos}}</td>
-            <td>{{usuario.alimentoe.grasas}}</td>
-            <td>{{usuario.alimentoe.peso}}</td>
-            <td>{{usuario.alimentoe.valorEnergetico}}</td>
-          </tr>
-        </tbody>
-      </table>
-
+    <div class="card-body border-0">
 
       <div class="row">
 
-        <div class="card bg-info text-white text-center col-sm-12">
-          <div class="card-body">Consumo total: 1570 kcal</div>
+        <div class="col-md-2">
+
+        </div>
+
+
+        <table class="table table-hover col-md-10 col-sm-12 table-responsive  text-center">
+          <thead class="thead-dark">
+            <tr>
+              <th>Alimento</th>
+              <th>Proteina</th>
+              <th>Hidratos de Carbono</th>
+              <th>Grasas</th>
+              <th>Peso</th>
+              <th>Valor Energético</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let alimentosUser of alimentos2">
+              <td>{{alimentosUser.nombre}}</td>
+              <td>{{alimentosUser.proteinas}}</td>
+              <td>{{alimentosUser.carbohidratos}}</td>
+              <td>{{alimentosUser.grasas}}</td>
+              <td>{{alimentosUser.peso}}</td>
+              <td>{{alimentosUser.valorEnergetico}} kcal</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="col-md-2">
+
+        </div>
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+
+        </div>
+
+        <div class="card micolor border-white text-white text-center col-sm-12 col-md-4">
+          <div class="card-body">Suma total de calorias: {{suma}} kcal</div>
+          <div *ngIf="suma == null" class="alert alert-info">
+            No puede calcular la suma, al no tener alimentos agreados a su perfil
+          </div>
+
+          <div *ngIf="suma > caloriasDiarias " class="alert alert-warning">
+              Ha pasado de las calorías diarias recomendandas
+            </div>
+        </div>
+
+        <div class="col-md-4">
+
         </div>
 
       </div>
 
     </div>
-    <div class="card-footer"></div>
+
   </div>
 
 

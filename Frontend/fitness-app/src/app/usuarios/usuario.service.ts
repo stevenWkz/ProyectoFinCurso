@@ -10,6 +10,7 @@ import { Alimento } from '../admin/alimento.js';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,6 +19,8 @@ export class UsuarioService {
   private urlEndPoint: string = "http://localhost:8080/users";
 
   private urlEndPoint2: string = "http://localhost:8080/alimentos";
+
+  private urlEndPoint3: string = "http://localhost:8080/objetivos";
 
   private httppHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
@@ -47,11 +50,23 @@ export class UsuarioService {
       return true;
 
     }
-
     return false;
+  }
 
+
+  public insertarAlimentosUser(usuario_id, alimento_id): Observable<any> {
+
+    return this.http.post<any>(`${this.urlEndPoint2}/insertarAlimentos/${usuario_id}/${alimento_id}`, { headers: this.agregarAuthorizationHeader()}).pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
 
   }
+
+
+
 
 
   public getAlimentos(): Observable<Alimento[]> {
@@ -65,18 +80,65 @@ export class UsuarioService {
 
   }
 
+  public sumaAlimentos(id): Observable<any>{
 
-  public getAlimentosUsuarios(): Observable<Alimento[]> {
 
-    return this.http.get<Alimento[]>(`${this.urlEndPoint2}/alimentosUsuario/2`, { headers: this.agregarAuthorizationHeader() }).pipe(
+    return this.http.get<any>(`${this.urlEndPoint2}/alimentosSUM/${id}`, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
+
+  }
+
+
+  public pesoIdealUser(id): Observable<any>{
+
+    return this.http.get<any>(`${this.urlEndPoint3}/pesoIdealUser/${id}`, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
+
+  }
+
+
+  
+  public caloriasDiarias(id): Observable<any>{
+
+    return this.http.get<any>(`${this.urlEndPoint3}/caloriasDiarias/${id}`, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
+
+  }
+
+
+  public objetivoDatosUser(id): Observable<any>{
+
+    return this.http.get<any>(`${this.urlEndPoint3}/objetivoDatosUser/${id}`, { headers: this.agregarAuthorizationHeader() }).pipe(
+      catchError(e => {
+        this.isNoAutorizado(e);
+        return throwError(e);
+      })
+    );
+
+  }
+
+
+  public getAlimentosUsuarios(id): Observable<Alimento[]> {
+
+    return this.http.get<Alimento[]>(`${this.urlEndPoint2}/alimentosUsuario/${id}`, { headers: this.agregarAuthorizationHeader() }).pipe(
       catchError(e => {
         this.isNoAutorizado(e);
         return throwError(e);
       })
 
     );
-
-
   }
 
   //Servicio obtener usuarios

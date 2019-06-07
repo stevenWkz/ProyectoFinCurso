@@ -44,9 +44,9 @@ export class RegistrarUserComponent implements OnInit {
   public create(): void{
 
    this.usuarioService.create(this.usuario)
-   .subscribe(json => { 
-    this.router.navigate(['/objetivo'])
-    //Swal.fire('Nuevo Usuario',`${this.usuario.nombre}`, 'success')
+   .subscribe(json => {
+    this.router.navigate(['/login']) 
+    Swal.fire('Nuevo Usuario',`${this.usuario.nombre}`, 'success')
    },
    err => {
      this.errores = err.error.errors as string[];
